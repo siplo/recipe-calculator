@@ -1,0 +1,14 @@
+{
+  "id": "beef-goulash",
+  "name": "Beef Goulash",
+  "baseWeightKg": 10,
+  "ingredients": [
+    { "name": "Beef", "quantity": 10, "unit": "kg" },
+    { "name": "Onions", "quantity": 3, "unit": "kg" },
+    { "name": "Paprika", "quantity": 250, "unit": "g" },
+    { "name": "Garlic", "quantity": 80, "unit": "g" },
+    { "name": "Caraway seeds", "quantity": 40, "unit": "g" },
+    { "name": "Salt", "quantity": 200, "unit": "g" },
+    { "name": "Pepper", "quantity": 80, "unit": "g" }
+  ]
+}
