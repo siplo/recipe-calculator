@@ -61,16 +61,12 @@
         }
         button:hover { box-shadow: 0 8px 18px rgba(54,79,199,0.35); }
         button:active { transform: translateY(2px); }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-        }
         .section {
             padding: 1rem;
             border-radius: 14px;
             background: #f3f4ff;
             border: 2px solid #e4e7ff;
+            margin-top: 1rem;
         }
         .warning {
             color: #d9480f;
@@ -105,44 +101,51 @@
 <body>
 <div class="app">
     <h1>Recipe Calculator</h1>
-    <p class="lead">Scale ingredients from 10kg batches to your exact meat weight with oversized, touch-friendly controls.</p>
+    <p class="lead">Follow the oversized, touch-friendly steps to scale ingredients from 10kg batches to your exact meat weight.</p>
 
-    <div class="grid">
-        <div class="section">
-            <label for="name">Your name</label>
-            <input id="name" type="text" placeholder="Enter your name" aria-label="Your name">
-        </div>
-        <div class="section">
-            <label for="sobriety">Are you sober?</label>
-            <select id="sobriety" aria-label="Sober selector">
-                <option value="yes">Yes, fully sober</option>
-                <option value="no">No, please double-check me</option>
-            </select>
-            <div id="sobriety-note" class="warning" aria-live="polite"></div>
+    <div id="step-name" class="section" style="margin-top:0;">
+        <h2 style="margin-top:0;">Step 1: Enter your name</h2>
+        <label for="name">Your name</label>
+        <input id="name" type="text" placeholder="Enter your name" aria-label="Your name">
+        <button id="to-sobriety" style="margin-top:1rem;" disabled>Continue</button>
+    </div>
+
+    <div id="step-sobriety" class="section" style="display:none;">
+        <h2 style="margin-top:0;">Step 2: Confirm sobriety</h2>
+        <label for="sobriety">Are you sober?</label>
+        <select id="sobriety" aria-label="Sober selector">
+            <option value="yes">Yes, fully sober</option>
+            <option value="no">No, please double-check me</option>
+        </select>
+        <div id="sobriety-note" class="warning" aria-live="polite" style="margin-top:0.5rem;"></div>
+        <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
+            <button id="back-to-name" style="flex:1;">Back</button>
+            <button id="to-recipes" style="flex:1;">Continue</button>
         </div>
     </div>
 
-    <div class="grid" style="margin-top: 1rem;">
-        <div class="section">
-            <label for="recipe">Choose a recipe</label>
-            <select id="recipe" disabled aria-label="Recipe chooser"></select>
+    <div id="step-recipes" class="section" style="display:none;">
+        <h2 style="margin-top:0;">Step 3: Choose recipe & weight</h2>
+        <label for="recipe">Choose a recipe</label>
+        <select id="recipe" aria-label="Recipe selector" disabled>
+            <option value="">Enter your name to load recipes</option>
+        </select>
+        <p style="margin:0.5rem 0 1rem 0;">Base recipes are typically defined for 10 kg of meat.</p>
+        <label for="weight">Meat weight (kg)</label>
+        <input id="weight" type="number" min="0.1" step="0.1" disabled aria-label="Meat weight in kilograms">
+        <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
+            <button id="back-to-sobriety" style="flex:1;">Back</button>
+            <button id="calculate" style="flex:1;" disabled>Calculate ingredients</button>
         </div>
-        <div class="section">
-            <label for="weight">Meat weight (kg)</label>
-            <input id="weight" type="number" min="0.1" step="0.1" disabled aria-label="Meat weight in kilograms">
-        </div>
-    </div>
-
-    <div class="section" style="margin-top:1rem;">
-        <button id="calculate" disabled>Calculate ingredients</button>
         <div id="message" class="warning" aria-live="polite" style="margin-top:0.5rem;"></div>
         <div id="error" class="error" aria-live="assertive" style="margin-top:0.5rem;"></div>
     </div>
 
-    <div class="section" id="result" style="margin-top:1rem; display:none;">
-        <h2 style="margin:0 0 0.5rem 0;">Scaled ingredients <span id="scaled-weight" class="badge"></span></h2>
+    <div class="section" id="result" style="display:none;">
+        <h2 style="margin:0 0 0.5rem 0;">Step 4: Scaled ingredients <span id="scaled-weight" class="badge"></span></h2>
         <p id="recipe-info" style="margin:0 0 1rem 0;"></p>
         <div class="ingredients" id="ingredients"></div>
+        <button id="back-to-recipes" style="margin-top:1rem;">Back to recipe selection</button>
     </div>
 </div>
 <script>
@@ -165,6 +168,14 @@
     const recipeInfo = document.getElementById('recipe-info');
     const ingredientsBox = document.getElementById('ingredients');
     const sobrietyNote = document.getElementById('sobriety-note');
+    const stepName = document.getElementById('step-name');
+    const stepSobriety = document.getElementById('step-sobriety');
+    const stepRecipes = document.getElementById('step-recipes');
+    const toSobrietyBtn = document.getElementById('to-sobriety');
+    const backToNameBtn = document.getElementById('back-to-name');
+    const toRecipesBtn = document.getElementById('to-recipes');
+    const backToSobrietyBtn = document.getElementById('back-to-sobriety');
+    const backToRecipesBtn = document.getElementById('back-to-recipes');
 
     async function fetchRecipes() {
         const response = await fetch('/api/recipes');
@@ -188,11 +199,12 @@
         recipeSelect.disabled = !state.userName;
         weightInput.disabled = !state.selectedRecipe;
         calculateBtn.disabled = !state.selectedRecipe;
+        toSobrietyBtn.disabled = !state.userName;
     }
 
     nameInput.addEventListener('input', () => {
         state.userName = nameInput.value.trim();
-        message.textContent = state.userName ? `Hi ${state.userName}, pick a recipe to start.` : '';
+        message.textContent = '';
         populateRecipes();
         updateControls();
     });
@@ -210,6 +222,7 @@
 
     calculateBtn.addEventListener('click', async () => {
         error.textContent = '';
+        message.textContent = '';
         if (!state.selectedRecipe) return;
         const weight = parseFloat(weightInput.value);
         if (Number.isNaN(weight) || weight <= 0) {
@@ -244,7 +257,52 @@
             row.innerHTML = `<span>${ing.name}</span><span>${ing.quantity} ${ing.unit}</span>`;
             ingredientsBox.appendChild(row);
         });
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'none';
     }
+
+    toSobrietyBtn.addEventListener('click', () => {
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'block';
+        stepRecipes.style.display = 'none';
+        resultCard.style.display = 'none';
+    });
+
+    backToNameBtn.addEventListener('click', () => {
+        stepName.style.display = 'block';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'none';
+        resultCard.style.display = 'none';
+    });
+
+    toRecipesBtn.addEventListener('click', () => {
+        if (!state.sober) {
+            const proceed = confirm('You are drunk. Are you really sure that you want continue to recipe selection?');
+            if (!proceed) {
+                message.textContent = 'Stay safe! Come back when you are ready.';
+                return;
+            }
+        }
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'block';
+        resultCard.style.display = 'none';
+    });
+
+    backToSobrietyBtn.addEventListener('click', () => {
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'block';
+        stepRecipes.style.display = 'none';
+        resultCard.style.display = 'none';
+    });
+
+    backToRecipesBtn.addEventListener('click', () => {
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'block';
+        resultCard.style.display = 'none';
+    });
 
     fetchRecipes().catch(() => {
         error.textContent = 'Failed to load recipes.';
