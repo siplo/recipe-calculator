@@ -101,51 +101,49 @@
 <body>
 <div class="app">
     <h1>Recipe Calculator</h1>
-    <p class="lead">Follow the oversized, touch-friendly steps to scale ingredients from 10kg batches to your exact meat weight.</p>
 
     <div id="step-name" class="section" style="margin-top:0;">
-        <h2 style="margin-top:0;">Step 1: Enter your name</h2>
-        <label for="name">Your name</label>
+        <h2 style="margin-top:0;">Ako sa volas</h2>
         <input id="name" type="text" placeholder="Enter your name" aria-label="Your name">
         <button id="to-sobriety" style="margin-top:1rem;" disabled>Continue</button>
     </div>
 
     <div id="step-sobriety" class="section" style="display:none;">
-        <h2 style="margin-top:0;">Step 2: Confirm sobriety</h2>
-        <label for="sobriety">Are you sober?</label>
+        <h2 style="margin-top:0;">Si ozraty alebo triezvy</h2>
+        <label for="sobriety">Si ozraty?</label>
         <select id="sobriety" aria-label="Sober selector">
-            <option value="yes">Yes, fully sober</option>
-            <option value="no">No, please double-check me</option>
+            <option value="yes">Som triezvy</option>
+            <option value="no">Som na kasu</option>
         </select>
         <div id="sobriety-note" class="warning" aria-live="polite" style="margin-top:0.5rem;"></div>
         <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
-            <button id="back-to-name" style="flex:1;">Back</button>
             <button id="to-recipes" style="flex:1;">Continue</button>
+<!--          <button id="back-to-name" style="flex:1;">Back</button>-->
         </div>
     </div>
 
     <div id="step-recipes" class="section" style="display:none;">
-        <h2 style="margin-top:0;">Step 3: Choose recipe & weight</h2>
-        <label for="recipe">Choose a recipe</label>
+        <h2 style="margin-top:0;">Vyber si recept & vahu</h2>
+        <label for="recipe">Recept</label>
         <select id="recipe" aria-label="Recipe selector" disabled>
-            <option value="">Enter your name to load recipes</option>
+            <option value="">Zvol recept</option>
         </select>
-        <p style="margin:0.5rem 0 1rem 0;">Base recipes are typically defined for 10 kg of meat.</p>
+        <p style="margin:0.5rem 0 1rem 0;">Recept je zvycajne na 10kg masa.</p>
         <label for="weight">Meat weight (kg)</label>
         <input id="weight" type="number" min="0.1" step="0.1" disabled aria-label="Meat weight in kilograms">
         <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
-            <button id="back-to-sobriety" style="flex:1;">Back</button>
-            <button id="calculate" style="flex:1;" disabled>Calculate ingredients</button>
+            <button id="calculate" style="flex:1;" disabled>Daj koreniny</button>
+<!--          <button id="back-to-sobriety" style="flex:1;">Back</button>-->
         </div>
         <div id="message" class="warning" aria-live="polite" style="margin-top:0.5rem;"></div>
         <div id="error" class="error" aria-live="assertive" style="margin-top:0.5rem;"></div>
     </div>
 
     <div class="section" id="result" style="display:none;">
-        <h2 style="margin:0 0 0.5rem 0;">Step 4: Scaled ingredients <span id="scaled-weight" class="badge"></span></h2>
+        <h2 style="margin:0 0 0.5rem 0;">Toto tam nasyp a dobre to bude <span id="scaled-weight" class="badge"></span></h2>
         <p id="recipe-info" style="margin:0 0 1rem 0;"></p>
         <div class="ingredients" id="ingredients"></div>
-        <button id="back-to-recipes" style="margin-top:1rem;">Back to recipe selection</button>
+        <button id="back-to-recipes" style="margin-top:1rem;">Spat na recepty</button>
     </div>
 </div>
 <script>
@@ -172,9 +170,9 @@
     const stepSobriety = document.getElementById('step-sobriety');
     const stepRecipes = document.getElementById('step-recipes');
     const toSobrietyBtn = document.getElementById('to-sobriety');
-    const backToNameBtn = document.getElementById('back-to-name');
+
     const toRecipesBtn = document.getElementById('to-recipes');
-    const backToSobrietyBtn = document.getElementById('back-to-sobriety');
+
     const backToRecipesBtn = document.getElementById('back-to-recipes');
 
     async function fetchRecipes() {
@@ -211,7 +209,7 @@
 
     sobrietySelect.addEventListener('change', () => {
         state.sober = sobrietySelect.value === 'yes';
-        sobrietyNote.textContent = state.sober ? '' : 'We will double-check every step because you are not sober.';
+        sobrietyNote.textContent = state.sober ? '' : 'Budem si na teba davat pozor ozran';
     });
 
     recipeSelect.addEventListener('change', () => {
@@ -226,20 +224,20 @@
         if (!state.selectedRecipe) return;
         const weight = parseFloat(weightInput.value);
         if (Number.isNaN(weight) || weight <= 0) {
-            error.textContent = 'Please enter a valid weight above zero.';
+            error.textContent = 'Daj uz vahu';
             return;
         }
         if (!state.sober) {
-            const proceed = confirm('You are drunk. Are you really sure that you want calculate this recipe?');
+            const proceed = confirm('Si si isty, ze chces toto? is ozraty');
             if (!proceed) {
-                message.textContent = 'Calculation cancelled.';
+                message.textContent = 'Nic nebude.';
                 return;
             }
         }
         const url = `/api/recipes/${state.selectedRecipe.id}/scale?weightKg=${encodeURIComponent(weight)}`;
         const res = await fetch(url);
         if (!res.ok) {
-            error.textContent = 'Unable to calculate ingredients. Please check your input.';
+            error.textContent = 'Neviem to zratat. Asi som aj ja ozraty';
             return;
         }
         const data = await res.json();
@@ -248,8 +246,8 @@
 
     function displayResult(data) {
         resultCard.style.display = 'block';
-        scaledWeight.textContent = `${data.requestedWeightKg} kg batch`;
-        recipeInfo.textContent = `${data.name} (base recipe: ${data.baseWeightKg} kg)`;
+        scaledWeight.textContent = `${data.requestedWeightKg} kg vaha`;
+        recipeInfo.textContent = `${data.name} (zaklad: ${data.baseWeightKg} kg)`;
         ingredientsBox.innerHTML = '';
         data.ingredients.forEach(ing => {
             const row = document.createElement('div');
@@ -269,18 +267,13 @@
         resultCard.style.display = 'none';
     });
 
-    backToNameBtn.addEventListener('click', () => {
-        stepName.style.display = 'block';
-        stepSobriety.style.display = 'none';
-        stepRecipes.style.display = 'none';
-        resultCard.style.display = 'none';
-    });
+
 
     toRecipesBtn.addEventListener('click', () => {
         if (!state.sober) {
-            const proceed = confirm('You are drunk. Are you really sure that you want continue to recipe selection?');
+            const proceed = confirm('Si si isty, ze robite tento recept? stale si ozraty?');
             if (!proceed) {
-                message.textContent = 'Stay safe! Come back when you are ready.';
+                message.textContent = 'Daj to Ymrovi a ty si daj pivo.';
                 return;
             }
         }
@@ -290,12 +283,7 @@
         resultCard.style.display = 'none';
     });
 
-    backToSobrietyBtn.addEventListener('click', () => {
-        stepName.style.display = 'none';
-        stepSobriety.style.display = 'block';
-        stepRecipes.style.display = 'none';
-        resultCard.style.display = 'none';
-    });
+
 
     backToRecipesBtn.addEventListener('click', () => {
         stepName.style.display = 'none';
