@@ -1,0 +1,22 @@
+{
+  "id": "Polish sausage",
+  "name": "Polish Sausage",
+  "book": "Internet Source",
+  "edition": "unknown",
+  "page": null,
+  "baseWeightKg": 11.2,
+  "meatBlock": [
+    { "name": "bravčové mäso Class I (≤ 5 % tuku)", "quantity": 3500, "unit": "g" },
+    { "name": "bravčové mäso Class IIB (35–40 % tuku)", "quantity": 6500, "unit": "g" },
+    { "name": "bravčové mäso Class III (~10 % tuku)", "quantity": 1200, "unit": "g" }
+  ],
+  "ingredientsPerKg": [
+    { "name": "neiodizovaná soľ", "quantity": 16, "unit": "g" },
+    { "name": "Cure #1 (dusitanová zmes)", "quantity": 2, "unit": "g" },
+    { "name": "čierne korenie jemne mleté", "quantity": 3, "unit": "g" },
+    { "name": "čerstvý cesnak", "quantity": 5, "unit": "g" },
+    { "name": "majorán sušený", "quantity": 1.5, "unit": "g" },
+    { "name": "muškátový kvet (mace)", "quantity": 0.5, "unit": "g" },
+    { "name": "ľadová voda", "quantity": 100, "unit": "ml" }
+  ]
+}
