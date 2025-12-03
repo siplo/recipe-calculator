@@ -1,0 +1,37 @@
+{
+  "id": "Ymrova klobasa",
+  "name": "Ymrova klobasa",
+  "baseWeightKg": 10,
+  "book": "Neded - Oravcovci a rodina",
+  "edition": "1965",
+  "page": 1,
+  "ingredients": [
+
+    {
+      "name": "Soľ",
+      "quantity": 175,
+      "unit": "g"
+    },
+    {
+      "name": "Rasca",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Sladká paprika",
+      "quantity": 250,
+      "unit": "g"
+    },
+    {
+      "name": "Stiplav8 paprika",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Cesnak",
+      "quantity": 50,
+      "unit": "g"
+    }
+
+  ]
+}

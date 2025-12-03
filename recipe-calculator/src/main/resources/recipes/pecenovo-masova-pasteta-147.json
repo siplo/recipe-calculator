@@ -1,0 +1,20 @@
+{
+  "id": "Pecenovo masova pasteta",
+  "name": "Pečeňovo-mäsová paštéta",
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 147,
+  "baseWeightKg": 1,
+  "ingredients": [
+    { "name": "pečeň", "quantity": 300, "unit": "g" },
+    { "name": "lalok", "quantity": 400, "unit": "g" },
+    { "name": "mäso z hlavy a slabiny", "quantity": 250, "unit": "g" },
+    { "name": "smažená cibuľka", "quantity": 100, "unit": "g" },
+    { "name": "vajce", "quantity": 1, "unit": "pc" },
+    { "name": "soľ", "quantity": 20, "unit": "g" },
+    { "name": "čierne korenie", "quantity": 3, "unit": "g" },
+    { "name": "nové korenie", "quantity": 3, "unit": "g" },
+    { "name": "muškátový orech", "quantity": 1, "unit": "g" },
+    { "name": "bravčová masť", "quantity": 30, "unit": "g" }
+  ]
+}

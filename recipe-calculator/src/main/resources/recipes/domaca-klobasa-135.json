@@ -1,0 +1,56 @@
+{
+
+  "id": "Domaca klobasa",
+  "name": "Domaca klobasa",
+  "baseWeightKg": 10,
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 135,
+  "ingredients": [
+    {
+      "name": "mäso",
+      "quantity": 10,
+      "unit": "kg"
+    },
+    {
+      "name": "Soľ",
+      "quantity": 220,
+      "unit": "g"
+    },
+    {
+      "name": "Čierne korenie",
+      "quantity": 25,
+      "unit": "g"
+    },
+    {
+      "name": "Sladká paprika",
+      "quantity": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Nové korenie",
+      "quantity": 5,
+      "unit": "g"
+    },
+    {
+      "name": "Zázvor",
+      "quantity": 4,
+      "unit": "kg"
+    },
+    {
+      "name": "Cesnak",
+      "quantity": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Rasca",
+      "quantity": 15,
+      "unit": "g"
+    },
+    {
+      "name": "Majorán",
+      "quantity": 5,
+      "unit": "g"
+    }
+  ]
+}

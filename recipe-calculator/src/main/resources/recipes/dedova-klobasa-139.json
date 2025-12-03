@@ -1,0 +1,52 @@
+{
+  "id": "Trvanlive klobasy",
+  "name": "Dedova klobasa",
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 139,
+  "baseWeightKg": 10,
+  "ingredients": [
+    {
+      "name": "chudé mäso",
+      "quantity": 5200,
+      "unit": "g"
+    },
+    {
+      "name": "tukové časti",
+      "quantity": 4200,
+      "unit": "g"
+    },
+    {
+      "name": "soľ",
+      "quantity": 200,
+      "unit": "g"
+    },
+    {
+      "name": "cesnak",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "čierne korenie",
+      "quantity": 25,
+      "unit": "g"
+    },
+    {
+      "name": "nové korenie",
+      "quantity": 3,
+      "unit": "g"
+    },
+    {
+      "name": "sladká paprika",
+      "quantity": 35,
+      "unit": "g"
+    },
+    {
+      "name": "zázvor",
+      "quantity": 5,
+      "unit": "g"
+    }
+  ]
+
+
+}

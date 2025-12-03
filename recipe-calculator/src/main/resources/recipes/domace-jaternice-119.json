@@ -1,0 +1,21 @@
+{
+  "id": "Domace jaternice",
+  "name": "Domáce jaternice",
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 119,
+  "baseWeightKg": 10,
+  "ingredients": [
+    { "name": "mäsite časti (hlava, bôčik, lalok)", "quantity": 3000, "unit": "g" },
+    { "name": "vnútornosti (pľúca, srdce)", "quantity": 1800, "unit": "g" },
+    { "name": "pečeň", "quantity": 500, "unit": "g" },
+    { "name": "žemle / ryža / krúpy", "quantity": 1500, "unit": "g" },
+    { "name": "soľ", "quantity": 130, "unit": "g" },
+    { "name": "cibuľka", "quantity": 20, "unit": "g" },
+    { "name": "mleté korenie (čierne a nové)", "quantity": 9, "unit": "g" },
+    { "name": "majorán", "quantity": 2, "unit": "g" },
+    { "name": "zázvor", "quantity": 1.5, "unit": "g" },
+    { "name": "cesnak", "quantity": 20, "unit": "g" },
+    { "name": "ovar (mastný)", "quantity": 2000, "unit": "g" }
+  ]
+}

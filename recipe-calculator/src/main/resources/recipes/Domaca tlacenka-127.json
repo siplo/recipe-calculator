@@ -1,0 +1,50 @@
+{
+  "id": "Domaca tlacenka",
+  "name": "Domáca tlačenka",
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 127,
+  "baseWeightKg": 10,
+  "ingredients": [
+    {
+      "name": "mäsite časti (hlava)",
+      "quantity": 5000,
+      "unit": "g"
+    },
+    {
+      "name": "kože",
+      "quantity": 850,
+      "unit": "g"
+    },
+    {
+      "name": "vnútornosti (jazyk, srdce)",
+      "quantity": 800,
+      "unit": "g"
+    },
+    {
+      "name": "soľ",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "korenie čierne mleté",
+      "quantity": 18,
+      "unit": "g"
+    },
+    {
+      "name": "cesnak",
+      "quantity": 10,
+      "unit": "g"
+    },
+    {
+      "name": "majorán",
+      "quantity": 2,
+      "unit": "g"
+    },
+    {
+      "name": "ovar",
+      "quantity": 1700,
+      "unit": "g"
+    }
+  ]
+}

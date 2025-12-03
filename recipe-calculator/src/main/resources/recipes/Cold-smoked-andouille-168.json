@@ -1,0 +1,23 @@
+{
+  "id": "Cold smoked andouille",
+  "name": "Cold-Smoked Andouille",
+  "book": "Charcuterie – Michael Ruhlman & Brian Polcyn",
+  "edition": "2005",
+  "page": 168,
+  "baseWeightKg": 2.7,
+  "ingredients": [
+    { "name": "bravčové plece bez kosti, na kocky", "quantity": 2250, "unit": "g" },
+    { "name": "žltá alebo biela cibuľa, na kocky", "quantity": 450, "unit": "g" },
+    { "name": "cesnak, mletý", "quantity": 36, "unit": "g" },
+    { "name": "kajenské korenie", "quantity": 12, "unit": "g" },
+    { "name": "kóšer soľ", "quantity": 40, "unit": "g" },
+    { "name": "ružová soľ (prísada na morenie)", "quantity": 6, "unit": "g" },
+    { "name": "tymian sušený", "quantity": 1, "unit": "g" },
+    { "name": "muškátový kvet (mace)", "quantity": 2, "unit": "g" },
+    { "name": "klinčeky mleté", "quantity": 0.5, "unit": "g" },
+    { "name": "nové korenie mleté", "quantity": 2, "unit": "g" },
+    { "name": "majorán mletý", "quantity": 1, "unit": "g" },
+    { "name": "sušené odstredené mlieko", "quantity": 70, "unit": "g" },
+    { "name": "ovčie črevá", "quantity": 6, "unit": "m" }
+  ]
+}

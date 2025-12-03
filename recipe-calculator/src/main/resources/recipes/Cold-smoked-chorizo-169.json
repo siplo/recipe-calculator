@@ -1,0 +1,21 @@
+{
+  "id": "Cold smoked chorizo",
+  "name": "Cold-Smoked Chorizo",
+  "book": "Charcuterie – Michael Ruhlman & Brian Polcyn",
+  "edition": "2005",
+  "page": 169,
+  "baseWeightKg": 2.175,
+  "ingredients": [
+    { "name": "bravčové plece bez kosti, na kocky", "quantity": 1500, "unit": "g" },
+    { "name": "kóšer soľ", "quantity": 40, "unit": "g" },
+    { "name": "ružová soľ (prísada na morenie)", "quantity": 6, "unit": "g" },
+    { "name": "biele korenie, mleté", "quantity": 3, "unit": "g" },
+    { "name": "rimska rasca mletá", "quantity": 16, "unit": "g" },
+    { "name": "ancho chili prášok", "quantity": 24, "unit": "g" },
+    { "name": "sušené odstredené mlieko", "quantity": 70, "unit": "g" },
+    { "name": "bravčový chrbátový tuk, na kocky", "quantity": 675, "unit": "g" },
+    { "name": "ľadová voda", "quantity": 60, "unit": "ml" },
+    { "name": "jarná cibuľka (biela časť + polovica zelenej)", "quantity": 100, "unit": "g" },
+    { "name": "bravčové črevá", "quantity": 3, "unit": "m" }
+  ]
+}

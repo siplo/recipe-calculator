@@ -1,0 +1,20 @@
+{
+  "id": "Domace krvavnicky",
+  "name": "Domáce krvavničky",
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 122,
+  "baseWeightKg": 10,
+  "ingredients": [
+    { "name": "mäsite časti (lalok)", "quantity": 1100, "unit": "g" },
+    { "name": "tučné časti", "quantity": 1800, "unit": "g" },
+    { "name": "vnútornosti", "quantity": 1600, "unit": "g" },
+    { "name": "krúpy/ryža", "quantity": 2300, "unit": "g" },
+    { "name": "krv", "quantity": 1400, "unit": "g" },
+    { "name": "soľ", "quantity": 200, "unit": "g" },
+    { "name": "cibuľka", "quantity": 20, "unit": "g" },
+    { "name": "čierne korenie", "quantity": 14, "unit": "g" },
+    { "name": "rasca", "quantity": 3, "unit": "g" },
+    { "name": "ovar", "quantity": 550, "unit": "g" }
+  ]
+}

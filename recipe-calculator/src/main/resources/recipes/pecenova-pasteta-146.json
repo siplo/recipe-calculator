@@ -1,0 +1,50 @@
+{
+  "id": "Pecenova pasteta",
+  "name": "Pečeňová paštéta",
+  "book": "Domáca zakáľačka – O. Pelech a kolektív",
+  "edition": "1965",
+  "page": 146,
+  "baseWeightKg": 1,
+  "ingredients": [
+    {
+      "name": "pečeň",
+      "quantity": 500,
+      "unit": "g"
+    },
+    {
+      "name": "podbradok alebo masť",
+      "quantity": 500,
+      "unit": "g"
+    },
+    {
+      "name": "soľ",
+      "quantity": 20,
+      "unit": "g"
+    },
+    {
+      "name": "vajce",
+      "quantity": 1,
+      "unit": "ks"
+    },
+    {
+      "name": "cibuľa",
+      "quantity": 100,
+      "unit": "g"
+    },
+    {
+      "name": "nové korenie",
+      "quantity": 3,
+      "unit": "g"
+    },
+    {
+      "name": "čierne korenie",
+      "quantity": 3,
+      "unit": "g"
+    },
+    {
+      "name": "muškátový orech",
+      "quantity": 1,
+      "unit": "g"
+    }
+  ]
+}

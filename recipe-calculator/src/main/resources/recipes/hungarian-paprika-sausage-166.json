@@ -1,0 +1,19 @@
+{
+  "id": "Hungarian paprika sausage",
+  "name": "Hungarian Paprika Sausage",
+  "book": "Charcuterie – Michael Ruhlman & Brian Polcyn",
+  "edition": "2005",
+  "page": 166,
+  "baseWeightKg": 1.9,
+  "ingredients": [
+    { "name": "hovädzie mäso bez kosti, na kocky", "quantity": 450, "unit": "g" },
+    { "name": "bravčové plece bez kosti, na kocky", "quantity": 1000, "unit": "g" },
+    { "name": "bravčový chrbátový tuk, na kocky", "quantity": 450, "unit": "g" },
+    { "name": "kóšer soľ", "quantity": 40, "unit": "g" },
+    { "name": "sušené odstredené mlieko", "quantity": 70, "unit": "g" },
+    { "name": "ružová soľ", "quantity": 3, "unit": "g" },
+    { "name": "biele korenie mleté", "quantity": 4, "unit": "g" },
+    { "name": "paprika (kvalitná, ideálne maďarská)", "quantity": 40, "unit": "g" },
+    { "name": "ľadová voda", "quantity": 60, "unit": "ml" }
+  ]
+}
