@@ -64,3 +64,18 @@ java -jar target/*-runner.jar
 ```
 
 Run the native binary from `target/recipe-calculator-1.0.0-SNAPSHOT-runner`.
+
+## Branch and PR workflow
+
+The repository work is expected to start from the latest `main` branch. To refresh your checkout and open a new PR based on
+`main`:
+
+```bash
+git checkout main
+git pull origin main   # update your local main
+git checkout -b feature/your-change
+# make your edits and commits
+git push origin feature/your-change
+```
+
+Open the PR from your feature branch back into `main`. This keeps feature work cleanly rebased on the up-to-date source.
