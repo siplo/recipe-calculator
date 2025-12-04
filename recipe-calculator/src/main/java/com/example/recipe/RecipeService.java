@@ -1,6 +1,7 @@
 package com.example.recipe;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,7 +23,8 @@ public class RecipeService {
     private static final Logger LOG = Logger.getLogger(RecipeService.class);
     private static final String INDEX_PATH = "recipes/index.json";
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper()
+      .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     private final Map<String, Recipe> recipes = new HashMap<>();
 
     @PostConstruct
