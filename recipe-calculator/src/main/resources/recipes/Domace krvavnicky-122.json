@@ -4,10 +4,12 @@
   "book": "Domáca zakáľačka – O. Pelech a kolektív",
   "edition": "1965",
   "page": 122,
+  "source": null,
   "baseWeightKg": 10,
+  "images": ["122.jpg","123.jpg"],
   "ingredients": [
     { "name": "mäsite časti (lalok)", "quantity": 1100, "unit": "g" },
-    { "name": "tučné časti", "quantity": 1800, "unit": "g" },
+    { "name": "tukové časti", "quantity": 1800, "unit": "g" },
     { "name": "vnútornosti", "quantity": 1600, "unit": "g" },
     { "name": "krúpy/ryža", "quantity": 2300, "unit": "g" },
     { "name": "krv", "quantity": 1400, "unit": "g" },
@@ -16,5 +18,13 @@
     { "name": "čierne korenie", "quantity": 14, "unit": "g" },
     { "name": "rasca", "quantity": 3, "unit": "g" },
     { "name": "ovar", "quantity": 550, "unit": "g" }
+  ],
+  "description": [
+    "Na prípravu domácich krvavničiek sa používajú najmä mäsité a tučnejšie časti z ošípanej, ako je lalok a bok, spolu s varenými vnútornosťami. Dôležitou súčasťou je aj dobre odobratá a ochutená krv, ktorá dodáva hotovému výrobku typickú farbu a chuť.",
+    "Používajú sa aj krúpy, ryža alebo žemle, ktoré sa podľa miestnych zvyklostí varia zvlášť a pridávajú sa do hotovej zmesi. Koreniny sa používajú jednoduché: soľ, čierne korenie, majorán a cesnak, pričom ich množstvo sa riadi skúsenosťou gazdiniek a veľkosťou pripravovaného množstva.",
+    "Mäsité a tučné časti sa varia do mäkka, po vychladnutí sa pomelú alebo nakrájajú na drobné kúsky. Vnútornosti sa varia osobitne, aby sa dali ľahko rozkúskovať. Krv sa musí po odobratí vždy dobre premiešať, aby nezrazila; pred použitím sa prepasíruje cez sitko.",
+    "Všetky základné zložky – mäso, vnútornosti, krúpy či ryža – sa dôkladne premiešajú. K zmesi sa postupne prilieva krv, aby mala hmotnosť primerane riedku konzistenciu. Dochucuje sa soľou, cesnakom, korením a majoránom. Zmes musí byť rovnomerne premiešaná a vláčna.",
+    "Takto pripravená masa sa plní do dobre umytých a pripravených čriev. Krvavničky sa plnia voľnejšie, aby pri varení nepraskli. Uzavreté kusy sa ukladajú do horúcej vody, ktorá nesmie vrieť. Varia sa pomaly, na veľmi miernom ohni, aby krv vnútri postupne zhusla.",
+    "Uvarené krvavničky sa vyberú, nechajú odtiecť a vychladnúť. Skladujú sa na chladnom mieste alebo sa môžu mierne zaúdiť podľa miestnych zvyklostí. Podávajú sa po upečení alebo orestovaní, tradične so zemiakmi a kyslou kapustou."
   ]
 }

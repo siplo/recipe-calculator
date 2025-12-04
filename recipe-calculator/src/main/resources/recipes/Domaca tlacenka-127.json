@@ -4,6 +4,8 @@
   "book": "Domáca zakáľačka – O. Pelech a kolektív",
   "edition": "1965",
   "page": 127,
+  "images": ["127.jpg"],
+  "source": null,
   "baseWeightKg": 10,
   "ingredients": [
     {
@@ -46,5 +48,19 @@
       "quantity": 1700,
       "unit": "g"
     }
+  ],
+  "description": [
+    "Domáca tlačenka",
+    "Na výrobu domácej tlačenky sa používa predovšetkým mäso z hlavy, kože a z vnútorností jazyk a srdce. Prísad sa používa soľ, čierne korenie, cesnak a majorán. Podstatnú časť surovín tvoria mäsite časti. Z pripravovaných 10 kg surovej tlačenky sa použije nasledovné množstvo surovín:",
+    "mäsite časti (z hlavy) – 5,00 kg",
+    "kože – 0,85 kg",
+    "vnútornosti (jazyk, srdce) – 0,80 kg",
+    "soľ – 0,018 kg (≈ 2 nie celkom plné polievkové lyžice)",
+    "korenie – 0,010 kg (asi 3 strúčiky)",
+    "cesnak – 0,002 kg (1 polievková lyžica)",
+    "majorán – 0,004 kg",
+    "Bravčové hlavy sa varia dlho, aby sa mäso dalo ľahko obrať, pričom sa dáva pozor, aby sa nerozvárali kosti. Aj z ostatných mäsitých častí sa sťahujú kosti a šľachy. Uvarené mäso a vnútornosti pokrájajú na pozdĺžne kúsky, koža sa zbaví štetín. Koža sa varí osobitne a musí sa dokonale zbaviť štetín.",
+    "Všetky takto pripravené suroviny sa zmiešajú aj s prísadami a vývarom a plnia sa do čistých, dobre…",
+    "(strana pokračuje na ďalšej)"
   ]
 }
