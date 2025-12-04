@@ -1,0 +1,17 @@
+{
+  "id": "chicken-curry",
+  "name": "Creamy Chicken Curry",
+  "baseWeightKg": 10,
+  "ingredients": [
+    { "name": "Chicken", "quantity": 10, "unit": "kg" },
+    { "name": "Plain yogurt", "quantity": 1, "unit": "kg" },
+    { "name": "Onions", "quantity": 2, "unit": "kg" },
+    { "name": "Tomatoes", "quantity": 2, "unit": "kg" },
+    { "name": "Garlic", "quantity": 200, "unit": "g" },
+    { "name": "Ginger", "quantity": 200, "unit": "g" },
+    { "name": "Curry powder", "quantity": 150, "unit": "g" },
+    { "name": "Coconut milk", "quantity": 1.5, "unit": "L" },
+    { "name": "Vegetable oil", "quantity": 750, "unit": "ml" },
+    { "name": "Salt", "quantity": 200, "unit": "g" }
+  ]
+}

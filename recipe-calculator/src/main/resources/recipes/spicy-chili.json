@@ -1,0 +1,17 @@
+{
+  "id": "spicy-chili",
+  "name": "Spicy Beef Chili",
+  "baseWeightKg": 10,
+  "ingredients": [
+    { "name": "Ground beef", "quantity": 8, "unit": "kg" },
+    { "name": "Kidney beans", "quantity": 2, "unit": "kg" },
+    { "name": "Onions", "quantity": 2, "unit": "kg" },
+    { "name": "Tomatoes", "quantity": 3, "unit": "kg" },
+    { "name": "Chili powder", "quantity": 150, "unit": "g" },
+    { "name": "Cumin", "quantity": 80, "unit": "g" },
+    { "name": "Smoked paprika", "quantity": 60, "unit": "g" },
+    { "name": "Garlic", "quantity": 120, "unit": "g" },
+    { "name": "Salt", "quantity": 200, "unit": "g" },
+    { "name": "Olive oil", "quantity": 500, "unit": "ml" }
+  ]
+}

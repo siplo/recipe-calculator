@@ -1,0 +1,17 @@
+{
+  "id": "lamb-kebab",
+  "name": "Herbed Lamb Kebab Mix",
+  "baseWeightKg": 10,
+  "ingredients": [
+    { "name": "Ground lamb", "quantity": 10, "unit": "kg" },
+    { "name": "Breadcrumbs", "quantity": 1, "unit": "kg" },
+    { "name": "Onions", "quantity": 1.5, "unit": "kg" },
+    { "name": "Parsley", "quantity": 250, "unit": "g" },
+    { "name": "Mint", "quantity": 120, "unit": "g" },
+    { "name": "Garlic", "quantity": 150, "unit": "g" },
+    { "name": "Cumin", "quantity": 80, "unit": "g" },
+    { "name": "Paprika", "quantity": 100, "unit": "g" },
+    { "name": "Salt", "quantity": 220, "unit": "g" },
+    { "name": "Olive oil", "quantity": 400, "unit": "ml" }
+  ]
+}

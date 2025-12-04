@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Calculator</title>
+    <style>
+        :root {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            font-size: clamp(18px, 2vw + 1rem, 28px);
+            color: #0d0d0d;
+            background: #f7f7fb;
+        }
+        body {
+            margin: 0;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        .app {
+            width: min(1100px, 100%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: clamp(2rem, 3vw + 1rem, 3rem);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        p.lead {
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 1.25rem;
+        }
+        label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        input, select, button {
+            width: 100%;
+            font-size: 1em;
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            border: 2px solid #d9dbe9;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            outline: 3px solid #5c7cfa44;
+            border-color: #5c7cfa;
+        }
+        button {
+            background: linear-gradient(135deg, #5c7cfa, #364fc7);
+            color: white;
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        button:hover { box-shadow: 0 8px 18px rgba(54,79,199,0.35); }
+        button:active { transform: translateY(2px); }
+        .section {
+            padding: 1rem;
+            border-radius: 14px;
+            background: #f3f4ff;
+            border: 2px solid #e4e7ff;
+            margin-top: 1rem;
+        }
+        .warning {
+            color: #d9480f;
+            font-weight: 800;
+        }
+        .ingredients {
+            margin-top: 1rem;
+        }
+        .ingredient {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e9e9ee;
+            font-weight: 700;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            font-weight: 800;
+            background: #e7f5ff;
+            color: #0b7285;
+            margin-left: 0.5rem;
+        }
+        .error { color: #c92a2a; font-weight: 800; }
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .app { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>Recipe Calculator</h1>
+    <p class="lead">Follow the oversized, touch-friendly steps to scale ingredients from 10kg batches to your exact meat weight. Fresh recipes have been added for you to try.</p>
+
+    <div id="step-name" class="section" style="margin-top:0;">
+        <h2 style="margin-top:0;">Step 1: Enter your name</h2>
+        <label for="name">Your name</label>
+        <input id="name" type="text" placeholder="Enter your name" aria-label="Your name">
+        <button id="to-sobriety" style="margin-top:1rem;" disabled>Continue</button>
+    </div>
+
+    <div id="step-sobriety" class="section" style="display:none;">
+        <h2 style="margin-top:0;">Step 2: Confirm sobriety</h2>
+        <label for="sobriety">Are you sober?</label>
+        <select id="sobriety" aria-label="Sober selector">
+            <option value="yes">Yes, fully sober</option>
+            <option value="no">No, please double-check me</option>
+        </select>
+        <div id="sobriety-note" class="warning" aria-live="polite" style="margin-top:0.5rem;"></div>
+        <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
+            <button id="back-to-name" style="flex:1;">Back</button>
+            <button id="to-recipes" style="flex:1;">Continue</button>
+        </div>
+    </div>
+
+    <div id="step-recipes" class="section" style="display:none;">
+        <h2 style="margin-top:0;">Step 3: Choose recipe & weight <span id="recipe-count" class="badge"></span></h2>
+        <label for="recipe">Choose a recipe</label>
+        <select id="recipe" aria-label="Recipe selector" disabled>
+            <option value="">Enter your name to load recipes</option>
+        </select>
+        <p style="margin:0.5rem 0 1rem 0;">Base recipes are typically defined for 10 kg of meat.</p>
+        <label for="weight">Meat weight (kg)</label>
+        <input id="weight" type="number" min="0.1" step="0.1" disabled aria-label="Meat weight in kilograms">
+        <div style="display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap;">
+            <button id="back-to-sobriety" style="flex:1;">Back</button>
+            <button id="calculate" style="flex:1;" disabled>Calculate ingredients</button>
+        </div>
+        <div id="message" class="warning" aria-live="polite" style="margin-top:0.5rem;"></div>
+        <div id="error" class="error" aria-live="assertive" style="margin-top:0.5rem;"></div>
+    </div>
+
+    <div class="section" id="result" style="display:none;">
+        <h2 style="margin:0 0 0.5rem 0;">Step 4: Scaled ingredients <span id="scaled-weight" class="badge"></span></h2>
+        <p id="recipe-info" style="margin:0 0 1rem 0;"></p>
+        <div class="ingredients" id="ingredients"></div>
+        <button id="back-to-recipes" style="margin-top:1rem;">Back to recipe selection</button>
+    </div>
+</div>
+<script>
+    const state = {
+        userName: '',
+        sober: true,
+        recipes: [],
+        selectedRecipe: null
+    };
+
+    const nameInput = document.getElementById('name');
+    const sobrietySelect = document.getElementById('sobriety');
+    const recipeSelect = document.getElementById('recipe');
+    const weightInput = document.getElementById('weight');
+    const calculateBtn = document.getElementById('calculate');
+    const message = document.getElementById('message');
+    const error = document.getElementById('error');
+    const resultCard = document.getElementById('result');
+    const scaledWeight = document.getElementById('scaled-weight');
+    const recipeInfo = document.getElementById('recipe-info');
+    const ingredientsBox = document.getElementById('ingredients');
+    const sobrietyNote = document.getElementById('sobriety-note');
+    const recipeCount = document.getElementById('recipe-count');
+    const stepName = document.getElementById('step-name');
+    const stepSobriety = document.getElementById('step-sobriety');
+    const stepRecipes = document.getElementById('step-recipes');
+    const toSobrietyBtn = document.getElementById('to-sobriety');
+    const backToNameBtn = document.getElementById('back-to-name');
+    const toRecipesBtn = document.getElementById('to-recipes');
+    const backToSobrietyBtn = document.getElementById('back-to-sobriety');
+    const backToRecipesBtn = document.getElementById('back-to-recipes');
+
+    async function fetchRecipes() {
+        const response = await fetch('/api/recipes');
+        const data = await response.json();
+        state.recipes = data;
+        populateRecipes();
+    }
+
+    function populateRecipes() {
+        recipeSelect.innerHTML = '<option value="">Select a recipe</option>';
+        state.recipes.forEach(r => {
+            const option = document.createElement('option');
+            option.value = r.id;
+            option.textContent = `${r.name} (base ${r.baseWeightKg} kg)`;
+            recipeSelect.appendChild(option);
+        });
+        recipeCount.textContent = state.recipes.length ? `${state.recipes.length} recipes ready` : 'No recipes';
+        recipeSelect.disabled = !state.userName;
+    }
+
+    function updateControls() {
+        recipeSelect.disabled = !state.userName;
+        weightInput.disabled = !state.selectedRecipe;
+        calculateBtn.disabled = !state.selectedRecipe;
+        toSobrietyBtn.disabled = !state.userName;
+    }
+
+    nameInput.addEventListener('input', () => {
+        state.userName = nameInput.value.trim();
+        message.textContent = '';
+        populateRecipes();
+        updateControls();
+    });
+
+    sobrietySelect.addEventListener('change', () => {
+        state.sober = sobrietySelect.value === 'yes';
+        sobrietyNote.textContent = state.sober ? '' : 'We will double-check every step because you are not sober.';
+    });
+
+    recipeSelect.addEventListener('change', () => {
+        state.selectedRecipe = state.recipes.find(r => r.id === recipeSelect.value) || null;
+        weightInput.value = state.selectedRecipe ? state.selectedRecipe.baseWeightKg : '';
+        updateControls();
+    });
+
+    calculateBtn.addEventListener('click', async () => {
+        error.textContent = '';
+        message.textContent = '';
+        if (!state.selectedRecipe) return;
+        const weight = parseFloat(weightInput.value);
+        if (Number.isNaN(weight) || weight <= 0) {
+            error.textContent = 'Please enter a valid weight above zero.';
+            return;
+        }
+        if (!state.sober) {
+            const proceed = confirm('You are drunk. Are you really sure that you want calculate this recipe?');
+            if (!proceed) {
+                message.textContent = 'Calculation cancelled.';
+                return;
+            }
+        }
+        const url = `/api/recipes/${state.selectedRecipe.id}/scale?weightKg=${encodeURIComponent(weight)}`;
+        const res = await fetch(url);
+        if (!res.ok) {
+            error.textContent = 'Unable to calculate ingredients. Please check your input.';
+            return;
+        }
+        const data = await res.json();
+        displayResult(data);
+    });
+
+    function displayResult(data) {
+        resultCard.style.display = 'block';
+        scaledWeight.textContent = `${data.requestedWeightKg} kg batch`;
+        recipeInfo.textContent = `${data.name} (base recipe: ${data.baseWeightKg} kg)`;
+        ingredientsBox.innerHTML = '';
+        data.ingredients.forEach(ing => {
+            const row = document.createElement('div');
+            row.className = 'ingredient';
+            row.innerHTML = `<span>${ing.name}</span><span>${ing.quantity} ${ing.unit}</span>`;
+            ingredientsBox.appendChild(row);
+        });
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'none';
+    }
+
+    toSobrietyBtn.addEventListener('click', () => {
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'block';
+        stepRecipes.style.display = 'none';
+        resultCard.style.display = 'none';
+    });
+
+    backToNameBtn.addEventListener('click', () => {
+        stepName.style.display = 'block';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'none';
+        resultCard.style.display = 'none';
+    });
+
+    toRecipesBtn.addEventListener('click', () => {
+        if (!state.sober) {
+            const proceed = confirm('You are drunk. Are you really sure that you want continue to recipe selection?');
+            if (!proceed) {
+                message.textContent = 'Stay safe! Come back when you are ready.';
+                return;
+            }
+        }
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'block';
+        resultCard.style.display = 'none';
+    });
+
+    backToSobrietyBtn.addEventListener('click', () => {
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'block';
+        stepRecipes.style.display = 'none';
+        resultCard.style.display = 'none';
+    });
+
+    backToRecipesBtn.addEventListener('click', () => {
+        stepName.style.display = 'none';
+        stepSobriety.style.display = 'none';
+        stepRecipes.style.display = 'block';
+        resultCard.style.display = 'none';
+    });
+
+    fetchRecipes().catch(() => {
+        recipeCount.textContent = 'Failed to load recipes';
+        error.textContent = 'Failed to load recipes.';
+    });
+</script>
+</body>
+</html>
